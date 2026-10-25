@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Memory Lane — Ryan & Sheila</title>
+<meta name="description" content="A walk through memory lane — Ryan & Sheila.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap">
-<script src="./image-slot.js"></script>
 <style>
+
 html,body{margin:0;padding:0;background:#2a0408;-webkit-tap-highlight-color:transparent;overscroll-behavior:none}
 *{box-sizing:border-box}
 a{color:#e8c97e}a:hover{color:#f5dfa6}
@@ -26,76 +23,22 @@ button{font:inherit}
 @keyframes ml-rise{0%{transform:translate(0,0) scale(.5);opacity:0}15%{opacity:1}100%{transform:translate(var(--sx,6px),-190px) scale(1);opacity:0}}
 @keyframes ml-nudge{0%,100%{transform:translateY(0) rotate(45deg);opacity:.6}50%{transform:translateY(6px) rotate(45deg);opacity:1}}
 @keyframes ml-flash{0%{transform:scale(0) rotate(0);opacity:0}30%{transform:scale(1.2) rotate(30deg);opacity:1}100%{transform:scale(.2) rotate(80deg);opacity:0}}
+
 </style>
-</helmet>
-<div style="min-height:100dvh;display:flex;justify-content:center;align-items:center;background:#2a0408;font-family:'Cormorant Garamond',Georgia,serif;color:#fbf1e4">
+</head>
+<body>
+<div id="app-root"></div>
+<template id="app-tpl"><div style="min-height:100dvh;display:flex;justify-content:center;align-items:center;background:#2a0408;font-family:'Cormorant Garamond',Georgia,serif;color:#fbf1e4">
 <div style="position:relative;width:min(100vw,390px);height:min(100dvh,844px);overflow:hidden;touch-action:none;background:radial-gradient(120% 75% at 50% 42%,#6a0d16 0%,#530a12 55%,#3c060c 100%);box-shadow:0 0 60px rgba(20,0,3,.35)">
 
 <div onPointerDown="{{ pgDown }}" onPointerMove="{{ pgMove }}" onPointerUp="{{ pgUp }}" onPointerCancel="{{ pgUp }}" onWheel="{{ pgWheel }}" style="position:absolute;inset:0;opacity:{{ screenOp }};transform:translateY({{ pageY }});transition:{{ pageTr }}">
 
 <sc-if value="{{ isS0 }}" hint-placeholder-val="{{ true }}">
-<section data-screen-label="01 Home — The Church" onClick="{{ tapChurch }}" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:48px 24px 72px;cursor:pointer;user-select:none">
-  <div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
-    <div style="font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:#e6cfc0">Ryan &amp; Sheila</div>
-    <h1 style="margin:4px 0 0;font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(40px,7vh,54px);line-height:1.02;color:#e8c97e;text-wrap:balance">Walk through memory lane</h1>
-  </div>
-  <div style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center;width:100%">
-    <div style="position:relative;width:{{ chW }}px;height:{{ chH }}px"><div style="position:absolute;left:0;top:0;width:260px;height:320px;transform-origin:0 0;transform:scale({{ chS }})">
-      <div style="position:absolute;left:4px;top:166px;width:252px;height:50px;background:linear-gradient(180deg,#e0525c 0%,#b8141f 45%,#7c0912 100%);clip-path:polygon(50% 0,100% 100%,0 100%)"></div>
-      <div style="position:absolute;left:0;top:212px;width:260px;height:9px;border-radius:4px;background:linear-gradient(180deg,#c41a26,#7c0912);box-shadow:0 4px 6px -2px rgba(90,5,15,.45);z-index:1"></div>
-      <div style="position:absolute;left:16px;top:220px;width:228px;height:90px;background:linear-gradient(90deg,#dccbb0 0%,#f7efe2 22%,#fffaf1 50%,#f2e7d4 80%,#d6c4a6 100%);box-shadow:inset 0 8px 10px -6px rgba(90,40,20,.35)"></div>
-      <div style="position:absolute;left:38px;top:236px;width:32px;height:46px;border-radius:16px 16px 3px 3px;background:linear-gradient(90deg,#c9b693,#f3e9d8);box-shadow:0 2px 3px rgba(90,60,30,.25)">
-        <div style="position:absolute;left:4px;right:4px;top:4px;bottom:4px;border-radius:12px 12px 2px 2px;background:linear-gradient(180deg,#ffd29a,#f08a4a 55%,#c9502a);box-shadow:inset 0 2px 4px rgba(120,40,10,.45),0 0 10px rgba(255,150,80,.35)"></div>
-        <div style="position:absolute;left:15px;top:4px;width:2px;bottom:4px;background:#c9b693"></div>
-        <div style="position:absolute;left:4px;right:4px;top:22px;height:2px;background:#c9b693"></div>
-      </div>
-      <div style="position:absolute;left:190px;top:236px;width:32px;height:46px;border-radius:16px 16px 3px 3px;background:linear-gradient(90deg,#c9b693,#f3e9d8);box-shadow:0 2px 3px rgba(90,60,30,.25)">
-        <div style="position:absolute;left:4px;right:4px;top:4px;bottom:4px;border-radius:12px 12px 2px 2px;background:linear-gradient(180deg,#ffd29a,#f08a4a 55%,#c9502a);box-shadow:inset 0 2px 4px rgba(120,40,10,.45),0 0 10px rgba(255,150,80,.35)"></div>
-        <div style="position:absolute;left:15px;top:4px;width:2px;bottom:4px;background:#c9b693"></div>
-        <div style="position:absolute;left:4px;right:4px;top:22px;height:2px;background:#c9b693"></div>
-      </div>
-      <div style="position:absolute;left:125px;top:0;width:10px;height:36px;border-radius:3px;background:linear-gradient(90deg,#a8781e,#f0cc6a 45%,#c99a34);box-shadow:0 2px 3px rgba(90,50,5,.3)"></div>
-      <div style="position:absolute;left:115px;top:9px;width:30px;height:8px;border-radius:3px;background:linear-gradient(180deg,#f7dc8c,#c99a34 70%,#a8781e)"></div>
-      <div style="position:absolute;left:80px;top:34px;width:100px;height:48px;background:linear-gradient(180deg,#e0525c 0%,#b8141f 45%,#7c0912 100%);clip-path:polygon(50% 0,100% 100%,0 100%);z-index:2"></div>
-      <div style="position:absolute;left:76px;top:80px;width:108px;height:9px;border-radius:4px;background:linear-gradient(180deg,#c41a26,#7c0912);box-shadow:0 4px 6px -2px rgba(90,5,15,.45);z-index:3"></div>
-      <div style="position:absolute;left:90px;top:88px;width:80px;height:222px;background:linear-gradient(90deg,#dccbb0 0%,#f7efe2 22%,#fffaf1 50%,#f2e7d4 80%,#d6c4a6 100%);box-shadow:inset 0 8px 10px -6px rgba(90,40,20,.35),-6px 0 10px -6px rgba(90,50,20,.35),6px 0 10px -6px rgba(90,50,20,.35);z-index:2">
-        <div style="position:absolute;left:12px;top:10px;width:56px;height:60px;border-radius:28px 28px 4px 4px;background:linear-gradient(180deg,#3a1d16,#5e3426);box-shadow:inset 0 6px 10px rgba(0,0,0,.55),0 0 0 3px #eadcc4">
-          <div style="position:absolute;left:6px;top:10px;width:22px;transform-origin:50% 0;animation:{{ bellAnimA }}">
-          <div style="width:4px;height:6px;margin:0 auto;background:#7d5410"></div>
-          <div style="width:22px;height:24px;border-radius:11px 11px 4px 4px;background:radial-gradient(circle at 35% 30%,#fff4cf 0%,#f0cc6a 25%,#c99a34 60%,#7d5410 100%);box-shadow:inset 0 -2px 0 rgba(90,50,5,.4)"></div>
-          <div style="width:28px;height:5px;margin-left:-3px;border-radius:3px;background:linear-gradient(180deg,#f0cc6a,#a8781e)"></div>
-          <div style="width:7px;height:7px;margin:1px auto 0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff4cf,#a8781e)"></div>
-        </div>
-          <div style="position:absolute;left:28px;top:10px;width:22px;transform-origin:50% 0;animation:{{ bellAnimB }}">
-          <div style="width:4px;height:6px;margin:0 auto;background:#7d5410"></div>
-          <div style="width:22px;height:24px;border-radius:11px 11px 4px 4px;background:radial-gradient(circle at 35% 30%,#fff4cf 0%,#f0cc6a 25%,#c99a34 60%,#7d5410 100%);box-shadow:inset 0 -2px 0 rgba(90,50,5,.4)"></div>
-          <div style="width:28px;height:5px;margin-left:-3px;border-radius:3px;background:linear-gradient(180deg,#f0cc6a,#a8781e)"></div>
-          <div style="width:7px;height:7px;margin:1px auto 0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff4cf,#a8781e)"></div>
-        </div>
-        </div>
-        <div style="position:absolute;left:-4px;top:76px;width:88px;height:7px;border-radius:3px;background:linear-gradient(180deg,#fffaf1,#d6c4a6);box-shadow:0 3px 4px -1px rgba(90,60,30,.35)"></div>
-        <div style="position:absolute;left:27px;top:94px;width:26px;height:26px;border-radius:50%;background:linear-gradient(90deg,#c9b693,#f3e9d8);box-shadow:0 2px 3px rgba(90,60,30,.25)">
-          <div style="position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ffd29a,#f08a4a 60%,#c9502a);box-shadow:inset 0 2px 3px rgba(120,40,10,.45)"></div>
-        </div>
-      </div>
-      <div style="position:absolute;left:94px;top:224px;width:72px;height:30px;background:linear-gradient(180deg,#e0525c 0%,#b8141f 45%,#7c0912 100%);clip-path:polygon(50% 0,100% 100%,0 100%);z-index:3"></div>
-      <div style="position:absolute;left:92px;top:252px;width:76px;height:7px;border-radius:3px;background:linear-gradient(180deg,#c41a26,#7c0912);box-shadow:0 4px 6px -2px rgba(90,5,15,.45);z-index:4"></div>
-      <div style="position:absolute;left:111px;top:259px;width:38px;height:51px;border-radius:19px 19px 0 0;background:linear-gradient(90deg,#c9b693,#efe3cd);z-index:3">
-        <div style="position:absolute;left:4px;right:4px;top:4px;bottom:0;border-radius:15px 15px 0 0;background:linear-gradient(90deg,#6b3a1e,#a8663a 30%,#8a4d28 50%,#a8663a 70%,#6b3a1e);box-shadow:inset 0 3px 5px rgba(40,15,5,.5)"></div>
-        <div style="position:absolute;left:18px;top:6px;width:2px;bottom:0;background:#4e2812"></div>
-        <div style="position:absolute;left:13px;top:30px;width:3px;height:6px;border-radius:2px;background:#f0cc6a"></div>
-        <div style="position:absolute;left:22px;top:30px;width:3px;height:6px;border-radius:2px;background:#f0cc6a"></div>
-      </div>
-      <div style="position:absolute;left:4px;top:308px;width:252px;height:12px;border-radius:4px;background:linear-gradient(180deg,#f3e9d8,#c9b693 60%,#a8977a);box-shadow:inset 0 1px 0 #fffaf1;z-index:4"></div>
-      <div style="position:absolute;left:-6px;top:316px;width:272px;height:14px;border-radius:50%;background:rgba(15,0,2,.5);filter:blur(5px)"></div>
-    </div></div>
-  </div>
-  <div style="font-style:italic;font-size:19px;color:#e6cfc0;opacity:{{ homeHintOp }};transition:opacity .4s;animation:ml-breathe 2.4s ease-in-out infinite">Tap to begin</div>
-</section>
+<section data-screen-label="01 Home — The Church" onClick="{{ tapChurch }}" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;cursor:pointer;user-select:none;overflow:hidden"><div style="position:absolute;inset:0;background:url(assets/altar.jpg) center/cover"></div><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,4,8,.55) 0%,rgba(42,4,8,.12) 34%,rgba(42,4,8,.55) 70%,rgba(42,4,8,.96) 100%)"></div><div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:0 24px 40px"><div style="font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:#e6cfc0">Ryan &amp; Sheila</div><h1 style="margin:2px 0 0;font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(40px,7vh,56px);line-height:1.02;color:#e8c97e;text-wrap:balance">Walk through memory lane</h1><div style="font-style:italic;font-size:19px;color:#e6cfc0;opacity:{{ homeHintOp }};transition:opacity .4s;animation:ml-breathe 2.4s ease-in-out infinite">Tap to begin</div></div></section>
 </sc-if>
 
 <sc-if value="{{ isS1 }}" hint-placeholder-val="{{ false }}">
-<section data-screen-label="02 The Proposal" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:48px 24px 72px;user-select:none">
+<section data-screen-label="02 The Proposal" style="position:absolute;inset:0;user-select:none;overflow:hidden"><div style="position:absolute;inset:0;background:url(assets/kiss.jpg) center/cover;opacity:.16;pointer-events:none;z-index:0"></div><div style="position:absolute;inset:0;background:radial-gradient(120% 75% at 50% 42%,rgba(106,13,22,.45),rgba(60,6,12,.86));pointer-events:none;z-index:0"></div><div style="position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;padding:48px 24px 72px">
   <div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
     <div style="font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:#e6cfc0">Chapter I</div>
     <h2 style="margin:0;font-weight:500;font-size:32px;letter-spacing:.02em">The Proposal</h2>
@@ -151,7 +94,7 @@ button{font:inherit}
       <div style="font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:#e6cfc0">14 February 2025</div>
     </div>
   </div>
-</section>
+</div></section>
 </sc-if>
 
 <sc-if value="{{ isS2 }}" hint-placeholder-val="{{ false }}">
@@ -246,15 +189,15 @@ button{font:inherit}
       <div style="position:absolute;left:88px;top:76px;width:104px;height:300px;overflow:hidden;z-index:2">
         <div style="position:absolute;left:4px;top:0;width:96px;padding:8px 8px 18px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(90deg,#efebe3,#fdfbf7 30%,#fdfbf7 70%,#ebe6dc);box-shadow:0 8px 14px -6px rgba(60,30,10,.55);transform:translateY({{ stripY }});transition:{{ stripTr }}">
           <div style="position:relative;width:80px;height:80px;background:#d8d2c8;overflow:hidden;filter:grayscale(1) contrast(1.08)">
-              <image-slot id="booth-photo-1" shape="rect" placeholder="Photo 1"></image-slot>
+              <img src="assets/booth-1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
               <div style="position:absolute;inset:0;background:#fbf8f2;pointer-events:none;opacity:{{ devOp }};transition:opacity 1.4s ease 0.4s"></div>
             </div>
           <div style="position:relative;width:80px;height:80px;background:#d8d2c8;overflow:hidden;filter:grayscale(1) contrast(1.08)">
-              <image-slot id="booth-photo-2" shape="rect" placeholder="Photo 2"></image-slot>
+              <img src="assets/booth-2.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
               <div style="position:absolute;inset:0;background:#fbf8f2;pointer-events:none;opacity:{{ devOp }};transition:opacity 1.4s ease 1.5s"></div>
             </div>
           <div style="position:relative;width:80px;height:80px;background:#d8d2c8;overflow:hidden;filter:grayscale(1) contrast(1.08)">
-              <image-slot id="booth-photo-3" shape="rect" placeholder="Photo 3"></image-slot>
+              <img src="assets/booth-3.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
               <div style="position:absolute;inset:0;background:#fbf8f2;pointer-events:none;opacity:{{ devOp }};transition:opacity 1.4s ease 2.6s"></div>
             </div>
           
@@ -345,9 +288,175 @@ button{font:inherit}
 
 
 </div>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;],&quot;default&quot;:&quot;0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;sound&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Audio&quot;},&quot;songUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Audio&quot;}}">
+</div></template>
+<script>
+
+/* ---- Memory Lane: minimal fine-grained reactive runtime (no deps) ---- */
+(function (global) {
+  var UNITLESS = new Set(['opacity','zIndex','z-index','flex','flexGrow','flexShrink','fontWeight','lineHeight','order','zoom']);
+  function styleObjToCss(o) {
+    var s = '';
+    for (var k in o) {
+      var v = o[k]; if (v == null) continue;
+      var prop = k.replace(/[A-Z]/g, function (m) { return '-' + m.toLowerCase(); });
+      if (typeof v === 'number' && !UNITLESS.has(k)) v = v + 'px';
+      s += prop + ':' + v + ';';
+    }
+    return s;
+  }
+  var exprCache = new Map();
+  function compileExpr(srcx) {
+    if (exprCache.has(srcx)) return exprCache.get(srcx);
+    var fn;
+    try { fn = new Function('d', 'with (d) { return (' + srcx + '); }'); }
+    catch (e) { fn = function () { return undefined; }; }
+    exprCache.set(srcx, fn);
+    return fn;
+  }
+  function parseTokens(str) {
+    var toks = [], last = 0, re = /\{\{\s*([\s\S]*?)\s*\}\}/g, m;
+    while ((m = re.exec(str))) {
+      if (m.index > last) toks.push({ t: str.slice(last, m.index) });
+      toks.push({ e: compileExpr(m[1]) });
+      last = m.index + m[0].length;
+    }
+    if (last < str.length) toks.push({ t: str.slice(last) });
+    return toks;
+  }
+  function evalToks(toks, data) {
+    if (toks.length === 1 && toks[0].e) return toks[0].e(data);       // single expr -> raw value
+    var s = '';
+    for (var i = 0; i < toks.length; i++) {
+      var tk = toks[i];
+      s += (tk.t != null) ? tk.t : (tk.e(data) == null ? '' : tk.e(data));
+    }
+    return s;
+  }
+  function dataFor(comp, scope) { return scope ? Object.assign({}, comp._vals, scope) : comp._vals; }
+
+  var EVT = { onclick:'click', onpointerdown:'pointerdown', onpointermove:'pointermove',
+              onpointerup:'pointerup', onpointercancel:'pointercancel', onwheel:'wheel' };
+
+  function processNode(node, binds, ctx) {
+    if (node.nodeType === 3) {
+      if (node.nodeValue.indexOf('{{') !== -1) binds.push({ type:'text', node:node, toks:parseTokens(node.nodeValue), ctx:ctx });
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    var tag = node.tagName.toLowerCase();
+    if (tag === 'sc-if') {
+      var tplIf = document.createElement('template');
+      while (node.firstChild) tplIf.content.appendChild(node.firstChild);
+      var anchorIf = document.createComment('if');
+      node.parentNode.replaceChild(anchorIf, node);
+      binds.push({ type:'if', anchor:anchorIf, toks:parseTokens(node.getAttribute('value')), tpl:tplIf, ctx:ctx, mounted:null });
+      return;
+    }
+    if (tag === 'sc-for') {
+      var tplFor = document.createElement('template');
+      while (node.firstChild) tplFor.content.appendChild(node.firstChild);
+      var anchorFor = document.createComment('for');
+      node.parentNode.replaceChild(anchorFor, node);
+      binds.push({ type:'for', anchor:anchorFor, listToks:parseTokens(node.getAttribute('list')),
+                   asName:node.getAttribute('as'), tpl:tplFor, ctx:ctx, len:-1, mounted:[] });
+      return;
+    }
+    if (node.hasAttribute('style') && node.getAttribute('style').indexOf('{{') !== -1) {
+      binds.push({ type:'style', node:node, toks:parseTokens(node.getAttribute('style')), ctx:ctx });
+    }
+    var attrs = Array.prototype.slice.call(node.attributes);
+    for (var i = 0; i < attrs.length; i++) {
+      var nm = attrs[i].name.toLowerCase();
+      if (EVT[nm]) {
+        (function (evt, toks) {
+          node.addEventListener(evt, function (e) {
+            var fn = evalToks(toks, dataFor(ctx.comp, ctx.scope));
+            if (typeof fn === 'function') fn(e);
+          });
+        })(EVT[nm], parseTokens(attrs[i].value));
+        node.removeAttribute(attrs[i].name);
+      }
+    }
+    var kids = Array.prototype.slice.call(node.childNodes);
+    for (var j = 0; j < kids.length; j++) processNode(kids[j], binds, ctx);
+  }
+
+  function mountFragment(tpl, ctx, anchor) {
+    var frag = tpl.content.cloneNode(true);
+    var nodes = Array.prototype.slice.call(frag.childNodes);
+    var sub = [];
+    for (var i = 0; i < nodes.length; i++) processNode(nodes[i], sub, ctx);
+    anchor.parentNode.insertBefore(frag, anchor);
+    return { binds: sub, nodes: nodes };
+  }
+
+  function patchBinds(binds, comp) {
+    for (var i = 0; i < binds.length; i++) {
+      var b = binds[i];
+      var data = dataFor(comp, b.ctx && b.ctx.scope);
+      if (b.type === 'text') {
+        b.node.nodeValue = evalToks(b.toks, data);
+      } else if (b.type === 'style') {
+        var v = evalToks(b.toks, data);
+        b.node.setAttribute('style', (v && typeof v === 'object') ? styleObjToCss(v) : v);
+      } else if (b.type === 'if') {
+        var on = !!evalToks(b.toks, data);
+        if (on && !b.mounted) { b.mounted = mountFragment(b.tpl, b.ctx, b.anchor); patchBinds(b.mounted.binds, comp); }
+        else if (!on && b.mounted) { removeNodes(b.mounted.nodes); b.mounted = null; }
+        else if (on && b.mounted) { patchBinds(b.mounted.binds, comp); }
+      } else if (b.type === 'for') {
+        var list = evalToks(b.listToks, data) || [];
+        if (list.length !== b.len) {
+          for (var k = 0; k < b.mounted.length; k++) removeNodes(b.mounted[k].nodes);
+          b.mounted = [];
+          for (var n = 0; n < list.length; n++) {
+            var scope = Object.assign({}, b.ctx && b.ctx.scope);
+            scope[b.asName] = list[n];
+            var inst = mountFragment(b.tpl, { comp: comp, scope: scope }, b.anchor);
+            b.mounted.push(inst);
+            patchBinds(inst.binds, comp);
+          }
+          b.len = list.length;
+        } else {
+          for (var m2 = 0; m2 < b.mounted.length; m2++) patchBinds(b.mounted[m2].binds, comp);
+        }
+      }
+    }
+  }
+  function removeNodes(nodes) { for (var i = 0; i < nodes.length; i++) if (nodes[i].parentNode) nodes[i].parentNode.removeChild(nodes[i]); }
+
+  function DCLogic(props) { this.props = props || {}; this.state = {}; }
+  DCLogic.prototype.setState = function (partial) {
+    Object.assign(this.state, typeof partial === 'function' ? partial(this.state) : partial);
+    this._schedule();
+  };
+  DCLogic.prototype._schedule = function () {
+    if (this._pending) return; this._pending = true;
+    var self = this;
+    requestAnimationFrame(function () { self._pending = false; self._render(); });
+  };
+  DCLogic.prototype._render = function () { this._vals = this.renderVals(); patchBinds(this._rootBinds, this); };
+
+  function mountApp(Cls, tpl, root, props) {
+    var comp = new Cls(props);
+    var frag = tpl.content.cloneNode(true);
+    var nodes = Array.prototype.slice.call(frag.childNodes);
+    var binds = [];
+    var ctx = { comp: comp, scope: null };
+    for (var i = 0; i < nodes.length; i++) processNode(nodes[i], binds, ctx);
+    comp._rootBinds = binds;
+    comp._vals = comp.renderVals();
+    root.appendChild(frag);
+    patchBinds(binds, comp);
+    if (comp.componentDidMount) comp.componentDidMount();
+    return comp;
+  }
+
+  global.DCLogic = DCLogic;
+  global.mountApp = mountApp;
+})(window);
+
+
 class Component extends DCLogic {
   state = this.fresh(0);
   timers = [];
@@ -673,6 +782,10 @@ class Component extends DCLogic {
     };
   }
 }
+
+var q = new URLSearchParams(location.search);
+var props = { startScreen: q.get('screen') || '0', sound: true, songUrl: '' };
+mountApp(Component, document.getElementById('app-tpl'), document.getElementById('app-root'), props);
 </script>
 </body>
 </html>

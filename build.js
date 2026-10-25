@@ -3,9 +3,10 @@
  * Source of truth for markup + component logic is the Claude Design export
  * (src/Memory Lane.dc.html). We strip the proprietary Claude runtime
  * (support.js / image-slot.js) and drive the exact same markup + component
- * through our own tiny reactive runtime (see RUNTIME below). Photos are wired
- * in: 3 booth photos, an altar backdrop for the opening screen, and a kiss
- * backdrop for screen 02.
+ * through our own tiny reactive runtime (see RUNTIME below). The design ships
+ * its own backgrounds, fonts, photos and song under assets/ + fonts/, and the
+ * markup references them with relative ./assets and ./fonts paths, so it is
+ * used as-is — only the unused @font-face rules are dropped.
  */
 const fs = require('fs');
 const path = require('path');
@@ -14,50 +15,13 @@ const ROOT = __dirname;
 const src = fs.readFileSync(path.join(ROOT, 'src', 'Memory Lane.dc.html'), 'utf8');
 
 // --- extract pieces from the export -----------------------------------------
-const baseCss = src.match(/<style>([\s\S]*?)<\/style>/)[1];           // base rules + @keyframes (lives in <helmet>)
+let baseCss = src.match(/<style>([\s\S]*?)<\/style>/)[1];             // @font-face + base rules + @keyframes
 let xdc = src.match(/<x-dc>([\s\S]*?)<\/x-dc>/)[1];                    // the whole app markup
-xdc = xdc.replace(/<helmet>[\s\S]*?<\/helmet>/, '').trim();           // drop the helmet (fonts/keyframes/image-slot.js)
+xdc = xdc.replace(/<helmet>[\s\S]*?<\/helmet>/, '').trim();           // drop the helmet (fonts link / keyframes / image-slot.js)
 const component = src.match(/<script type="text\/x-dc"[^>]*>([\s\S]*?)<\/script>/)[1]; // class Component extends DCLogic
 
-// --- edit markup: booth photos ----------------------------------------------
-function boothImg(n) {
-  return '<img src="assets/booth-' + n + '.jpg" alt="" ' +
-    'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">';
-}
-xdc = xdc.replace(/<image-slot id="booth-photo-1"[^>]*><\/image-slot>/, boothImg(1));
-xdc = xdc.replace(/<image-slot id="booth-photo-2"[^>]*><\/image-slot>/, boothImg(2));
-xdc = xdc.replace(/<image-slot id="booth-photo-3"[^>]*><\/image-slot>/, boothImg(3));
-
-// --- edit markup: replace screen 01 with a photo-backed opening -------------
-const NEW_S01 =
-'<section data-screen-label="01 Home — The Church" onClick="{{ tapChurch }}" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;cursor:pointer;user-select:none;overflow:hidden">' +
-  '<div style="position:absolute;inset:0;background:url(assets/altar.jpg) center/cover"></div>' +
-  '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,4,8,.55) 0%,rgba(42,4,8,.12) 34%,rgba(42,4,8,.55) 70%,rgba(42,4,8,.96) 100%)"></div>' +
-  '<div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:0 24px 40px">' +
-    '<div style="font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:#e6cfc0">Ryan &amp; Sheila</div>' +
-    '<h1 style="margin:2px 0 0;font-family:\'Great Vibes\',cursive;font-weight:400;font-size:clamp(40px,7vh,56px);line-height:1.02;color:#e8c97e;text-wrap:balance">Walk through memory lane</h1>' +
-    '<div style="font-style:italic;font-size:19px;color:#e6cfc0;opacity:{{ homeHintOp }};transition:opacity .4s;animation:ml-breathe 2.4s ease-in-out infinite">Tap to begin</div>' +
-  '</div>' +
-'</section>';
-{
-  const a = xdc.indexOf('<section data-screen-label="01 Home');
-  const b = xdc.indexOf('</section>', a) + '</section>'.length;
-  xdc = xdc.slice(0, a) + NEW_S01 + xdc.slice(b);
-}
-
-// --- edit markup: add a dim kiss backdrop behind screen 02 ------------------
-xdc = xdc.replace(
-  /<section data-screen-label="02 The Proposal"[^>]*>/,
-  '<section data-screen-label="02 The Proposal" style="position:absolute;inset:0;user-select:none;overflow:hidden">' +
-    '<div style="position:absolute;inset:0;background:url(assets/kiss.jpg) center/cover;opacity:.16;pointer-events:none;z-index:0"></div>' +
-    '<div style="position:absolute;inset:0;background:radial-gradient(120% 75% at 50% 42%,rgba(106,13,22,.45),rgba(60,6,12,.86));pointer-events:none;z-index:0"></div>' +
-    '<div style="position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;padding:48px 24px 72px">'
-);
-{
-  const a = xdc.indexOf('data-screen-label="02 The Proposal"');
-  const b = xdc.indexOf('</section>', a);
-  xdc = xdc.slice(0, b) + '</div>' + xdc.slice(b);
-}
+// --- drop unused @font-face rules (handover: Gellatio & Galteniya loaded but unused) ---
+baseCss = baseCss.replace(/@font-face\{font-family:'(?:Gellatio|Galteniya)';[^}]*\}\n?/g, '');
 
 // --- our tiny reactive runtime ----------------------------------------------
 const RUNTIME = `
@@ -236,7 +200,7 @@ const head =
 '<meta name="description" content="A walk through memory lane — Ryan & Sheila.">\n' +
 '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
 '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
-'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap">\n' +
+'<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">\n' +
 '<style>\n' + baseCss + '\n</style>\n' +
 '</head>\n<body>\n' +
 '<div id="app-root"></div>\n' +

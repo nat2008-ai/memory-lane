@@ -54,7 +54,7 @@ component = component.replace('envelopeSfx() {', "envelopeSfx() { this.playClip(
 // Kiss reveal ("you are now husband and wife"): applause/cheer instead of the chime
 component = component.replace(
   'this.setState({ married: true }); this.chime();',
-  "this.setState({ married: true }); this.playClip('./assets/sfx-cheer.mp3', 0.85);"
+  "this.setState({ married: true }); this.playClip('./assets/sfx-cheer.mp3', 0.45);"
 );
 // Lower the background-music volume further (0.1 -> 0.05)
 component = component.replace(

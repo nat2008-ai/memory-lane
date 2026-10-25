@@ -1027,7 +1027,7 @@ class Component extends DCLogic {
       s2HintShow: !s.unrolled, iDoShow: s.vowsReady && !s.married,
       sayIDo: () => {
         this.ac();
-        this.setState({ married: true }); this.playClip('./assets/sfx-cheer.mp3', 0.85);
+        this.setState({ married: true }); this.playClip('./assets/sfx-cheer.mp3', 0.45);
         this.later(() => this.setState({ s2Reveal: true }), 900);
         this.later(() => this.setState({ s2Next: true }), 2600);
       },

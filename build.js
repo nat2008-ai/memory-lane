@@ -23,6 +23,19 @@ const component = src.match(/<script type="text\/x-dc"[^>]*>([\s\S]*?)<\/script>
 // --- drop unused @font-face rules (handover: Gellatio & Galteniya loaded but unused) ---
 baseCss = baseCss.replace(/@font-face\{font-family:'(?:Gellatio|Galteniya)';[^}]*\}\n?/g, '');
 
+// --- screen 5 copy tweaks (requested) ---------------------------------------
+// 1. chapter heading "The Toast" -> "Cheers to Us"
+xdc = xdc.replace('>The Toast</h2>', '>Cheers to Us</h2>');
+// 2 + 3. keep "Happy 1st Anniversary" on one line and superscript the "st"
+xdc = xdc.replace(
+  'font-size:48px;line-height:1.05;color:#e8c97e;text-wrap:balance',
+  'font-size:34px;line-height:1.05;color:#e8c97e;white-space:nowrap'
+);
+xdc = xdc.replace(
+  '>Happy 1st Anniversary</div>',
+  '>Happy 1<sup style="font-size:.5em;vertical-align:.5em;letter-spacing:0">st</sup> Anniversary</div>'
+);
+
 // --- our tiny reactive runtime ----------------------------------------------
 const RUNTIME = `
 /* ---- Memory Lane: minimal fine-grained reactive runtime (no deps) ---- */

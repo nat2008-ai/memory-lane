@@ -18,7 +18,7 @@ const src = fs.readFileSync(path.join(ROOT, 'src', 'Memory Lane.dc.html'), 'utf8
 let baseCss = src.match(/<style>([\s\S]*?)<\/style>/)[1];             // @font-face + base rules + @keyframes
 let xdc = src.match(/<x-dc>([\s\S]*?)<\/x-dc>/)[1];                    // the whole app markup
 xdc = xdc.replace(/<helmet>[\s\S]*?<\/helmet>/, '').trim();           // drop the helmet (fonts link / keyframes / image-slot.js)
-const component = src.match(/<script type="text\/x-dc"[^>]*>([\s\S]*?)<\/script>/)[1]; // class Component extends DCLogic
+let component = src.match(/<script type="text\/x-dc"[^>]*>([\s\S]*?)<\/script>/)[1]; // class Component extends DCLogic
 
 // --- drop unused @font-face rules (handover: Gellatio & Galteniya loaded but unused) ---
 baseCss = baseCss.replace(/@font-face\{font-family:'(?:Gellatio|Galteniya)';[^}]*\}\n?/g, '');
@@ -34,6 +34,27 @@ xdc = xdc.replace(
 xdc = xdc.replace(
   '>Happy 1st Anniversary</div>',
   '>Happy 1<sup style="font-size:.5em;vertical-align:.5em;letter-spacing:0">st</sup> Anniversary</div>'
+);
+
+// --- custom sound effects (requested) ---------------------------------------
+// A tiny one-shot mp3 player (mirrors the BGM loader: fetch -> decodeAudioData,
+// cached per url). Injected just before songPlay.
+const PLAY_CLIP =
+  "playClip(url, g) {\n" +
+  "    if (!this.soundOn() || !this.ac()) return;\n" +
+  "    const c = this.ctx;\n" +
+  "    this._clips = this._clips || {};\n" +
+  "    const go = (buf) => { try { const s = c.createBufferSource(), a = c.createGain(); a.gain.value = (g == null ? 0.9 : g); s.buffer = buf; s.connect(a); a.connect(this.master); s.start(); } catch (e) {} };\n" +
+  "    if (this._clips[url]) return go(this._clips[url]);\n" +
+  "    fetch(url).then(r => r.arrayBuffer()).then(ab => new Promise((res, rej) => c.decodeAudioData(ab, res, rej))).then(buf => { this._clips[url] = buf; go(buf); }).catch(() => {});\n" +
+  "  }\n  ";
+component = component.replace('songPlay(on) {', PLAY_CLIP + 'songPlay(on) {');
+// Envelope open: real paper sfx instead of the synthesized paper rub
+component = component.replace('envelopeSfx() {', "envelopeSfx() { this.playClip('./assets/sfx-paper.mp3', 0.95); return;");
+// Kiss reveal ("you are now husband and wife"): applause/cheer instead of the chime
+component = component.replace(
+  'this.setState({ married: true }); this.chime();',
+  "this.setState({ married: true }); this.playClip('./assets/sfx-cheer.mp3', 0.85);"
 );
 
 // --- our tiny reactive runtime ----------------------------------------------

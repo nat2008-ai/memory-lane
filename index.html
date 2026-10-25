@@ -792,7 +792,7 @@ class Component extends DCLogic {
     this.noise(t + 0.72, 0.18, 220, 0.7, 0.5, 'lowpass', 0.004);
     this.tone(95, t + 0.72, 0.2, 0.2, 'sine');
   }
-  envelopeSfx() {
+  envelopeSfx() { this.playClip('./assets/sfx-paper.mp3', 0.95); return;
     if (!this.soundOn() || !this.ac()) return;
     const t = this.ctx.currentTime + 0.01;
     this.paperRub(t + 0.25, 0.55, 0.32, 2600);
@@ -831,6 +831,14 @@ class Component extends DCLogic {
     const mel = [72, 76, 79, 84, 83, 79, 76, 74, 77, 81, 79, 76, 72, 74, 76, 79, 81, 79, 77, 74, 72, 71, 72, 76];
     const m = mel[this.noteI++ % mel.length], f = 440 * Math.pow(2, (m - 69) / 12), t = this.ctx.currentTime + 0.005;
     this.tone(f, t, 1.4, .16); this.tone(f * 2, t, .5, .04); this.tone(f * 3.01, t, .25, .02);
+  }
+  playClip(url, g) {
+    if (!this.soundOn() || !this.ac()) return;
+    const c = this.ctx;
+    this._clips = this._clips || {};
+    const go = (buf) => { try { const s = c.createBufferSource(), a = c.createGain(); a.gain.value = (g == null ? 0.9 : g); s.buffer = buf; s.connect(a); a.connect(this.master); s.start(); } catch (e) {} };
+    if (this._clips[url]) return go(this._clips[url]);
+    fetch(url).then(r => r.arrayBuffer()).then(ab => new Promise((res, rej) => c.decodeAudioData(ab, res, rej))).then(buf => { this._clips[url] = buf; go(buf); }).catch(() => {});
   }
   songPlay(on) { this.wantBgm = on; if (!this.ac()) return; this.loadBgm(); this.applyBgm(); }
   loadBgm() {
@@ -1019,7 +1027,7 @@ class Component extends DCLogic {
       s2HintShow: !s.unrolled, iDoShow: s.vowsReady && !s.married,
       sayIDo: () => {
         this.ac();
-        this.setState({ married: true }); this.chime();
+        this.setState({ married: true }); this.playClip('./assets/sfx-cheer.mp3', 0.85);
         this.later(() => this.setState({ s2Reveal: true }), 900);
         this.later(() => this.setState({ s2Next: true }), 2600);
       },

@@ -97,8 +97,8 @@ button{font:inherit}
     </g></g></g>
     <g transform="translate(0 40)"><g style="animation:ml-fadeup 1s ease .5s both">
       <text x="195" y="355" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:13px;letter-spacing:.9px;fill:url(#mlGoldText)">DEAR SHEILA,</text>
-      <text x="195" y="399" text-anchor="middle" style="font-family:'Instrument Serif',serif;font-size:31px;fill:url(#mlGoldText)">Let’s walk through</text>
-      <text x="195" y="436" text-anchor="middle" style="font-family:'Instrument Serif',serif;font-size:31px;fill:url(#mlGoldText)">down the memory lane</text>
+      <text x="195" y="399" text-anchor="middle" style="font-family:'Instrument Serif',serif;font-size:31px;fill:url(#mlGoldText)">Let’s walk down</text>
+      <text x="195" y="436" text-anchor="middle" style="font-family:'Instrument Serif',serif;font-size:31px;fill:url(#mlGoldText)">through the memory lane</text>
       <text x="195" y="468" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:14px;letter-spacing:.4px;fill:url(#mlGoldText)">25.10.26</text>
     </g></g>
     <g transform="translate(0 -230)"><g style="animation:ml-fadeup 1s ease .3s both"><g id="monogram" filter="url(#mlEmboss)" style="transform-origin:195px 553px;transform:scale({{ monoS }});transition:transform .9s cubic-bezier(.3,1.6,.5,1)">
@@ -224,7 +224,7 @@ button{font:inherit}
     <sc-if value="{{ s1HintShow }}" hint-placeholder-val="{{ true }}">
       <div style="font-size:12px;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;color:#7d6640;margin-top:22px;animation:ml-breathe 2.4s ease-in-out infinite">Tap to open</div>
     </sc-if>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;opacity:{{ s1RevealOp }};transform:translateY({{ s1RevealY }}px);transition:opacity .9s,transform .9s">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:22px;opacity:{{ s1RevealOp }};transform:translateY({{ s1RevealY }}px);transition:opacity .9s,transform .9s">
       <div style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:15px;letter-spacing:.04em;line-height:1.6;text-align:center;background:linear-gradient(100deg,#b08a4c 0%,#8a6a34 40%,#b99558 65%,#7d5f2c 100%);-webkit-background-clip:text;background-clip:text;color:transparent"><span style="display:block;font-family:'Instrument Serif',serif;font-size:26px;letter-spacing:0;line-height:1.25;white-space:nowrap">Will you marry me?</span>14.02.25</div>
     </div>
   </div>
@@ -463,7 +463,7 @@ button{font:inherit}
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;pointer-events:none">
     <div style="display:flex;flex-direction:column;align-items:center;gap:8px;opacity:{{ cheersOp }};transform:translateY({{ cheersY }}px) scale({{ cheersS }});transition:opacity .9s,transform 1s cubic-bezier(.2,1.4,.4,1)">
       <div style="font-family:'Westwood Studio','Instrument Serif',serif;font-size:38px;line-height:1.05;color:#e8c97e;white-space:nowrap">Happy 1<sup style="font-size:.5em;vertical-align:.5em;letter-spacing:0">st</sup> Anniversary</div>
-      <div style="font-size:13px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;color:#e6cfc0">25.10.26</div>
+      <div style="font-size:13px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;color:#e6cfc0">25.10.26</div><button onClick="{{ replay }}" style="margin-top:16px;pointer-events:{{ cheersPE }};display:inline-flex;align-items:center;gap:7px;padding:9px 22px;min-height:40px;border-radius:999px;border:1px solid rgba(201,160,99,.6);background:transparent;color:#e8c97e;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer">&#8635; Restart</button>
     </div>
     </div>
   </div>
@@ -1106,7 +1106,7 @@ class Component extends DCLogic {
           this.later(() => this.setState({ closing: true }), 3400);
         } else this.setState({ dragging: false, toastP: 0 });
       },
-      cheersOp: vis(s.cheers), cheersY: s.cheers ? 0 : 14, cheersS: s.cheers ? 1 : .9,
+      cheersOp: vis(s.cheers), cheersPE: s.cheers ? 'auto' : 'none', cheersY: s.cheers ? 0 : 14, cheersS: s.cheers ? 1 : .9,
       replayOp: vis(s.closing), replayPE: pe(s.closing),
       bubbles
     };

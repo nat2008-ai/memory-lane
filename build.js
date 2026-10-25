@@ -35,6 +35,26 @@ xdc = xdc.replace(
   '>Happy 1st Anniversary</div>',
   '>Happy 1<sup style="font-size:.5em;vertical-align:.5em;letter-spacing:0">st</sup> Anniversary</div>'
 );
+// 4. restart button below the date, revealed with the "Cheers" moment
+xdc = xdc.replace(
+  '>25.10.26</div>',
+  '>25.10.26</div>' +
+  '<button onClick="{{ replay }}" style="margin-top:16px;pointer-events:{{ cheersPE }};' +
+  'display:inline-flex;align-items:center;gap:7px;padding:9px 22px;min-height:40px;border-radius:999px;' +
+  'border:1px solid rgba(201,160,99,.6);background:transparent;color:#e8c97e;' +
+  "font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;" +
+  'font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer">&#8635; Restart</button>'
+);
+
+// 5. starting-screen copy: "Let's walk down through the memory lane" (swap down/through)
+xdc = xdc.replace('walk through</text>', 'walk down</text>');
+xdc = xdc.replace('>down the memory lane</text>', '>through the memory lane</text>');
+
+// 6. shift the proposal reveal ("Will you marry me?" + date) down slightly
+xdc = xdc.replace(
+  'align-items:center;gap:4px;opacity:{{ s1RevealOp }}',
+  'align-items:center;gap:4px;margin-top:22px;opacity:{{ s1RevealOp }}'
+);
 
 // --- custom sound effects (requested) ---------------------------------------
 // A tiny one-shot mp3 player (mirrors the BGM loader: fetch -> decodeAudioData,
@@ -60,6 +80,11 @@ component = component.replace(
 component = component.replace(
   'this.wantBgm && this.soundOn() ? 0.1 : 0',
   'this.wantBgm && this.soundOn() ? 0.05 : 0'
+);
+// Restart button: only clickable once "Cheers" has shown
+component = component.replace(
+  'cheersOp: vis(s.cheers), cheersY: s.cheers ? 0 : 14, cheersS: s.cheers ? 1 : .9,',
+  "cheersOp: vis(s.cheers), cheersPE: s.cheers ? 'auto' : 'none', cheersY: s.cheers ? 0 : 14, cheersS: s.cheers ? 1 : .9,"
 );
 
 // --- our tiny reactive runtime ----------------------------------------------

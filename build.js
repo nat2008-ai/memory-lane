@@ -29,7 +29,7 @@ xdc = xdc.replace('>The Toast</h2>', '>Cheers to Us</h2>');
 // 2 + 3. keep "Happy 1st Anniversary" on one line and superscript the "st"
 xdc = xdc.replace(
   'font-size:48px;line-height:1.05;color:#e8c97e;text-wrap:balance',
-  'font-size:34px;line-height:1.05;color:#e8c97e;white-space:nowrap'
+  'font-size:38px;line-height:1.05;color:#e8c97e;white-space:nowrap'
 );
 xdc = xdc.replace(
   '>Happy 1st Anniversary</div>',

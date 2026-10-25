@@ -852,7 +852,7 @@ class Component extends DCLogic {
   applyBgm() {
     const c = this.ctx; if (!c || !this.bgmBuf) return;
     if (!this.bgmGain) { this.bgmGain = c.createGain(); this.bgmGain.gain.value = 0; this.bgmGain.connect(c.destination); }
-    this.bgmGain.gain.setTargetAtTime(this.wantBgm && this.soundOn() ? 0.1 : 0, c.currentTime, 0.4);
+    this.bgmGain.gain.setTargetAtTime(this.wantBgm && this.soundOn() ? 0.05 : 0, c.currentTime, 0.4);
     if (this.wantBgm && !this.bgmSrc) {
       const src = c.createBufferSource(), dur = this.bgmBuf.duration, off = dur > 16 ? 15 : 0;
       src.buffer = this.bgmBuf; src.loop = true; src.loopStart = off; src.loopEnd = dur;

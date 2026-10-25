@@ -56,6 +56,11 @@ component = component.replace(
   'this.setState({ married: true }); this.chime();',
   "this.setState({ married: true }); this.playClip('./assets/sfx-cheer.mp3', 0.85);"
 );
+// Lower the background-music volume further (0.1 -> 0.05)
+component = component.replace(
+  'this.wantBgm && this.soundOn() ? 0.1 : 0',
+  'this.wantBgm && this.soundOn() ? 0.05 : 0'
+);
 
 // --- our tiny reactive runtime ----------------------------------------------
 const RUNTIME = `

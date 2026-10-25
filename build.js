@@ -86,6 +86,14 @@ component = component.replace(
   'cheersOp: vis(s.cheers), cheersY: s.cheers ? 0 : 14, cheersS: s.cheers ? 1 : .9,',
   "cheersOp: vis(s.cheers), cheersPE: s.cheers ? 'auto' : 'none', cheersY: s.cheers ? 0 : 14, cheersS: s.cheers ? 1 : .9,"
 );
+// Stop/pause audio when the page is hidden, backgrounded, screen-locked, or closed
+component = component.replace(
+  'if (this.ac()) this.loadBgm();',
+  "if (this.ac()) this.loadBgm();\n" +
+  "    this.onVisibility = () => { if (!this.ctx) return; if (document.hidden) this.ctx.suspend().catch(() => {}); else if (this.wantBgm && this.soundOn()) this.ctx.resume().catch(() => {}); };\n" +
+  "    document.addEventListener('visibilitychange', this.onVisibility);\n" +
+  "    window.addEventListener('pagehide', () => { try { if (this.bgmSrc) this.bgmSrc.stop(); } catch (e) {} if (this.ctx) this.ctx.suspend().catch(() => {}); });"
+);
 
 // --- our tiny reactive runtime ----------------------------------------------
 const RUNTIME = `

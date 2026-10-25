@@ -660,6 +660,9 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onResize); this.onResize();
     this.onGesture = () => { this.ac(); if (this.wantBgm) this.applyBgm(); };
     if (this.ac()) this.loadBgm();
+    this.onVisibility = () => { if (!this.ctx) return; if (document.hidden) this.ctx.suspend().catch(() => {}); else if (this.wantBgm && this.soundOn()) this.ctx.resume().catch(() => {}); };
+    document.addEventListener('visibilitychange', this.onVisibility);
+    window.addEventListener('pagehide', () => { try { if (this.bgmSrc) this.bgmSrc.stop(); } catch (e) {} if (this.ctx) this.ctx.suspend().catch(() => {}); });
     ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown', 'wheel'].forEach(ev => window.addEventListener(ev, this.onGesture, { passive: true }));
     const s = parseInt(this.props.startScreen ?? 0, 10) || 0;
     if (s) this.setState(this.fresh(s));
